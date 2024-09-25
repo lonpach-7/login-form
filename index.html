@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>log in form</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body>
+        
+    <div class="container">
+    <form id="loginform">
+        <label for="username">username</label>
+        <input type="text" id="email" placeholder="Enter your email">
+        <br><br>
+        <label for="password">password</label>
+        <input type="password"  placeholder="Enter your password" id="password">
+        <br>
+        <button type="submit">log in</button>
+         <br>
+         <label for=""> <input type="checkbox" >remember me
+         <br>
+         <a href="#">forget password</a>
+         </label>
+     
+      <br>
+      <br>
+      <p>
+        not registered
+
+      </p>
+      <a href="signup.html">sign up</a>
+
+
+    </form>
+    </div>
+    <script>
+      document.getElementById('loginForm').addEventListener('submit', function(event) {
+   
+    event.preventDefault();
+
+    
+    const errorMessages = document.querySelectorAll('.error-message');
+    errorMessages.forEach(message => message.textContent = '');
+
+    
+    let isValid = true;
+
+    
+    const email = document.getElementById('email').value.trim();
+    if (email === '') {
+        document.getElementById('emailError').textContent = 'Email is required.';
+        isValid = false;
+    }
+
+    
+    const password = document.getElementById('password').value.trim();
+    if (password === '') {
+        document.getElementById('passwordError').textContent = 'Password is required.';
+        isValid = false;
+    }
+
+   
+    if (isValid) {
+        const confirmLogin = confirm('Do you want to log in with the provided credentials?');
+        if (confirmLogin) {
+            alert('Login successful!'); 
+        }
+    }
+});
+
+    </script>
+    </body>
+    
+</html>

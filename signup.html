@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sign Up Form</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <form id="loginform">
+            <h2>Sign Up</h2>
+            
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" placeholder="Enter your full name" required>
+             <label>Gender</label>
+            <div>
+                <input type="radio" id="male" name="gender" value="Male" required>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="Female" required>
+                <label for="female">Female</label>   
+            </div>
+             <label for="age">Age</label>
+            <input type="number" id="age" placeholder="Enter your age" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password" required>
+            
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+            
+            <button type="submit" id="submit">Sign Up</button>
+            
+            <p>
+                Already have an account? <a href="index.html">Log in</a>
+            </p>
+        </form>
+    </div>
+    
+     <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+    
+    event.preventDefault();
+
+    const errorMessages = document.querySelectorAll('.error-message');
+    errorMessages.forEach(message => message.textContent = '');
+
+ 
+    let isValid = true;
+
+
+    const name = document.getElementById('name').value.trim();
+    if (name === '') {
+        document.getElementById('nameError').textContent = 'Name is required.';
+        isValid = false;
+    }
+
+    
+const email = document.getElementById('email').value.trim();
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+if (email === '') {
+    document.getElementById('emailError').textContent = 'Email is required.';
+    isValid = false;
+} else if (!emailRegex.test(email)) {
+    document.getElementById('emailError').textContent = 'Please enter a valid email address.';
+    isValid = false;
+}
+ 
+    const password = document.getElementById('password').value.trim();
+    if (password === '') {
+        document.getElementById('passwordError').textContent = 'Password is required.';
+        isValid = false;
+    } else if (password.length < 8) {
+        document.getElementById('passwordError').textContent = 'Password must be at least 8 characters long.';
+        isValid = false;
+    }
+
+    
+    const confirmPassword = document.getElementById('confirmPassword').value.trim();
+    if (confirmPassword !== password) {
+        document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
+        isValid = false;
+    }
+
+    const age = document.getElementById('age').value.trim();
+    if (age === '' || age < 18 || age > 100) {
+        document.getElementById('ageError').textContent = 'Age must be a number between 18 and 100.';
+        isValid = false;
+    }
+
+    const gender = document.querySelector('input[name="gender"]:checked');
+    if (!gender) {
+        document.getElementById('genderError').textContent = 'Gender is required.';
+        isValid = false;
+    }
+
+    if (isValid) {
+        alert('Registration successful!');
+        
+    }
+});
+
+     </script>
+</body>
+</html>
